@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Huzaifa Holding | Charting New Paths</title>
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png">
+<link rel="apple-touch-icon" sizes="180x180" href="images/favicon-180.png">
+<link rel="icon" type="image/png" sizes="256x256" href="images/favicon-256.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+:root{
+  --bg:#0B0E12;
+  --panel:#12161D;
+  --panel-2:#171C24;
+  --blue:#5AAEE0;
+  --blue-soft:#3A6E92;
+  --gold:#C9A667;
+  --ink:#ECEAE4;
+  --muted:#8B9099;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:'Inter',sans-serif;
+  font-weight:300;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,.brand-font{
+  font-family:'Space Grotesk',sans-serif;
+  font-weight:600;
+  letter-spacing:-.01em;
+}
+.mono{font-family:'JetBrains Mono',monospace;}
+.eyebrow{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.72rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--gold);
+  display:inline-flex;align-items:center;gap:.6rem;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--gold);display:inline-block;}
+
+/* NAV */
+.navbar{
+  position:fixed;top:0;width:100%;z-index:999;
+  padding:1.1rem 0;
+  background:transparent;
+  transition:.35s;
+}
+.navbar.scrolled{
+  background:rgba(11,14,18,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  padding:.75rem 0;
+}
+.navbar-brand img{height:32px;}
+.nav-link{
+  color:var(--ink)!important;
+  font-size:.82rem;
+  letter-spacing:.05em;
+  text-transform:uppercase;
+  font-family:'JetBrains Mono',monospace;
+  margin:0 .7rem;
+  opacity:.75;
+  transition:.2s;
+}
+.nav-link:hover{opacity:1;color:var(--blue)!important;}
+.nav-cta{
+  border:1px solid var(--gold);
+  color:var(--gold)!important;
+  padding:.45rem 1.1rem!important;
+  border-radius:1px;
+  opacity:1!important;
+}
+.nav-cta:hover{background:var(--gold);color:var(--bg)!important;}
+.navbar-toggler{border-color:rgba(255,255,255,.3);}
+
+/* mobile dropdown menu needs its own solid backdrop, independent of scroll state */
+@media(max-width:991px){
+  .navbar-collapse{
+    background:rgba(11,14,18,.97);
+    backdrop-filter:blur(10px);
+    margin-top:1rem;
+    padding:1.1rem 1.3rem;
+    border-radius:6px;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 16px 40px rgba(0,0,0,.4);
+  }
+  .navbar-collapse .nav-link{margin:.35rem 0;}
+  .navbar-collapse .nav-cta{display:inline-block;margin-top:.5rem;}
+}
+
+/* HERO */
+.hero{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  background:#000;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('images/hero-bg.jpg') center center/cover no-repeat;
+  opacity:.55;
+}
+.hero-gradient{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, rgba(11,14,18,.55) 0%, rgba(11,14,18,.35) 40%, var(--bg) 100%);
+}
+.hero-mark{
+  position:absolute;
+  right:-6%;top:50%;transform:translateY(-50%);
+  width:46vw;max-width:640px;
+  opacity:.08;
+  filter:drop-shadow(0 0 60px var(--blue));
+  pointer-events:none;
+}
+.hero-content{position:relative;z-index:3;}
+.hero-content h1{
+  font-size:clamp(2.8rem,7vw,5.2rem);
+  line-height:1.0;
+  margin:1rem 0 .5rem;
+  color:#fff;
+}
+.hero-content h1 .accent-word{color:var(--blue);}
+.hero-content .sub{
+  font-size:clamp(1.1rem,2vw,1.4rem);
+  color:var(--muted);
+  font-weight:300;
+  max-width:600px;
+  margin-bottom:2rem;
+}
+.btn-gold{
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  padding:.9rem 2.1rem;
+  font-family:'JetBrains Mono',monospace;
+  font-size:.8rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  transition:.25s;
+}
+.btn-gold:hover{background:var(--gold);color:#000;}
+.scroll-hint{
+  position:absolute;bottom:2.2rem;left:50%;transform:translateX(-50%);
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.2em;
+  color:var(--muted);text-transform:uppercase;z-index:3;
+}
+
+/* SECTIONS */
+.section{padding:7rem 0;position:relative;}
+.section-title{
+  font-size:clamp(2rem,3.6vw,3rem);
+  color:#fff;
+  margin:.8rem 0 1.2rem;
+}
+.lead-text{color:var(--muted);font-size:1.02rem;max-width:680px;font-weight:300;}
+
+/* stat feature */
+.stat-feature{
+  text-align:center;
+  padding:2.8rem 0;
+}
+.stat-feature b{
+  display:block;font-family:'Space Grotesk',sans-serif;
+  font-size:clamp(4rem,9vw,6.5rem);
+  line-height:1;
+  background:linear-gradient(135deg, var(--blue) 10%, var(--gold) 90%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+  text-shadow:0 0 60px rgba(90,174,224,.25);
+}
+.stat-feature span{
+  display:block;margin-top:.6rem;
+  font-size:.82rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;font-family:'JetBrains Mono',monospace;
+}
+
+/* industries ticker */
+.ticker-wrap{
+  border-top:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  overflow:hidden;
+  padding:1.1rem 0;
+  white-space:nowrap;
+  position:relative;
+}
+.ticker-wrap::before,.ticker-wrap::after{
+  content:"";position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;
+}
+.ticker-wrap::before{left:0;background:linear-gradient(90deg, var(--bg), transparent);}
+.ticker-wrap::after{right:0;background:linear-gradient(270deg, var(--bg), transparent);}
+.ticker-track{
+  display:inline-flex;
+  animation:ticker-scroll 28s linear infinite;
+}
+.ticker-track span{
+  font-family:'JetBrains Mono',monospace;
+  font-size:.78rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--muted);
+  padding:0 1.6rem;
+  display:inline-flex;
+  align-items:center;
+}
+.ticker-track span::after{
+  content:"◆";
+  color:var(--gold);
+  margin-left:1.6rem;
+  font-size:.6rem;
+}
+@keyframes ticker-scroll{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(-50%);}
+}
+
+/* ===== scroll reveal ===== */
+.reveal{
+  opacity:0;
+  transform:translateY(28px);
+  transition:opacity .8s cubic-bezier(.22,.9,.32,1), transform .8s cubic-bezier(.22,.9,.32,1);
+  will-change:opacity, transform;
+}
+.reveal.active{opacity:1;transform:translateY(0);}
+.reveal-zoom{opacity:0;transform:scale(.94);transition:opacity .8s ease, transform .8s ease;}
+.reveal-zoom.active{opacity:1;transform:scale(1);}
+
+/* hero entrance */
+.hero-anim{opacity:0;transform:translateY(26px);animation:heroIn .9s cubic-bezier(.22,.9,.32,1) forwards;}
+.hero-anim.d1{animation-delay:.15s;}
+.hero-anim.d2{animation-delay:.35s;}
+.hero-anim.d3{animation-delay:.55s;}
+.hero-anim.d4{animation-delay:.75s;}
+@keyframes heroIn{
+  to{opacity:1;transform:translateY(0);}
+}
+
+/* subtle floating for hero mark */
+.hero-mark{animation:float 8s ease-in-out infinite;}
+@keyframes float{
+  0%,100%{transform:translateY(-50%) translateX(0);}
+  50%{transform:translateY(-52%) translateX(-14px);}
+}
+
+/* scroll hint pulse */
+.scroll-hint{animation:pulseFade 2.4s ease-in-out infinite;}
+@keyframes pulseFade{
+  0%,100%{opacity:.5;}
+  50%{opacity:1;}
+}
+
+/* nav underline hover */
+.nav-link{position:relative;}
+.nav-link:not(.nav-cta)::after{
+  content:"";position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--blue);
+  transition:width .25s ease;
+}
+.nav-link:not(.nav-cta):hover::after{width:100%;}
+
+/* division grid (CSS Grid so the detail panel can slot between rows) */
+.division-grid{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:1.5rem;
+  align-items:stretch;
+}
+@media(max-width:991px){
+  .division-grid{grid-template-columns:repeat(2, 1fr);}
+}
+@media(max-width:575px){
+  .division-grid{grid-template-columns:1fr;}
+}
+
+/* mission vision */
+.glass-card{
+  background:linear-gradient(160deg, rgba(255,255,255,.04), rgba(255,255,255,.01));
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:4px;
+  padding:2.4rem;
+  height:100%;
+  position:relative;
+}
+.glass-card::before{
+  content:"";position:absolute;top:0;left:0;width:36px;height:2px;background:var(--gold);
+}
+.glass-card h3{color:var(--gold);font-size:1.3rem;margin-bottom:1rem;}
+
+/* divisions */
+.div-card{
+  background:var(--panel);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:4px;
+  overflow:hidden;
+  height:100%;
+  transition:.3s;
+}
+.div-card:hover{
+  border-color:rgba(90,174,224,.4);
+  transform:translateY(-5px);
+  box-shadow:0 20px 40px rgba(0,0,0,.4);
+}
+.div-card .img-wrap{height:210px;overflow:hidden;}
+.div-card .img-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(.9) brightness(.85);transition:.4s;}
+.div-card:hover .img-wrap img{transform:scale(1.06);filter:saturate(1) brightness(.95);}
+.div-card .body{padding:1.5rem 1.6rem 1.8rem;}
+.div-card .num{
+  font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:.75rem;letter-spacing:.1em;
+}
+.div-card h3{color:#fff;font-size:1.15rem;margin:.4rem 0 .8rem;}
+.div-card p{color:var(--muted);font-size:.9rem;font-weight:300;margin-bottom:.9rem;}
+
+/* contact */
+.contact-section{
+  background:var(--panel-2);
+  position:relative;
+}
+.contact-photo{
+  position:relative;border-radius:4px;overflow:hidden;
+}
+.contact-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) brightness(.8);}
+.contact-photo::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg, transparent 40%, rgba(11,14,18,.7));
+}
+.contact-item{
+  display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.4rem;
+  padding-bottom:1.4rem;border-bottom:1px solid rgba(255,255,255,.07);
+}
+.contact-item .ic{color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:.85rem;width:24px;}
+.contact-item a{color:#fff;text-decoration:none;}
+.contact-item a:hover{color:var(--blue);}
+
+footer{
+  background:var(--bg);
+  border-top:1px solid rgba(255,255,255,.06);
+  padding:3rem 0 1.6rem;
+}
+footer img{height:28px;opacity:.9;}
+footer p{color:var(--muted);font-size:.85rem;}
+.footer-bottom{
+  margin-top:2rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.06);
+  font-family:'JetBrains Mono',monospace;font-size:.72rem;color:#565b63;letter-spacing:.05em;
+}
+
+@media(max-width:767px){
+  .hero-mark{display:none;}
+}
+
+</style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#mainNav">
+
+<nav class="navbar navbar-expand-lg" id="navbarMain">
+  <div class="container">
+    <a class="navbar-brand" href="#hero"><img src="images/logo-full.png" alt="Huzaifa Holding" style="filter:brightness(0) invert(1);"></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav2">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="nav2">
+      <ul class="navbar-nav align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#vision">Vision</a></li>
+        <li class="nav-item"><a class="nav-link" href="#divisions">Divisions</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-3"><a class="nav-link nav-cta" href="#contact">Get in Touch</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-gradient"></div>
+  <img src="images/logo-mark.png" class="hero-mark" alt="">
+  <div class="container hero-content">
+    <div class="col-lg-8">
+      <span class="eyebrow hero-anim d1">Huzaifa Holding</span>
+      <h1 class="hero-anim d2">
+        Charting new<br><span class="accent-word">paths</span> forward.
+      </h1>
+      <p class="sub hero-anim d3">
+        A diversified holding group investing across real estate, transportation, construction, manufacturing, chemicals, trading, fine dining and ultra luxury goods.
+      </p>
+      <a href="#divisions" class="btn btn-gold hero-anim d4">View Our Portfolio</a>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    Scroll — 2026 / 2027
+  </div>
+</section>
+
+<!-- ABOUT + STATS -->
+<section class="section" id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 reveal">
+        <span class="eyebrow">About Us</span>
+        <h2 class="section-title">
+          A forward-thinking group, built on diversified strength.
+        </h2>
+        <p class="lead-text">
+          Huzaifa Holding is a dynamic forward-thinking company dedicated to excellence across a diverse range of industries. Established with a vision to create enduring value and foster innovation, we bring together expertise and strategic investments in real estate, transportation, construction, manufacturing, chemicals, trading, fine dining and ultra luxury goods.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row mt-4">
+      <div class="col-lg-6 mx-auto">
+        <div class="stat-feature reveal-zoom">
+          <b class="counter" data-count="8">0</b>
+          <span>Industries under one holding group</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="ticker-wrap mt-4">
+    <div class="ticker-track" id="tickerTrack"></div>
+  </div>
+</section>
+
+<!-- VISION -->
+<section class="section" id="vision" style="background:var(--panel);">
+  <div class="container">
+    <span class="eyebrow reveal">Our Purpose</span>
+    <h2 class="section-title mb-4 reveal">
+      Mission &amp; Vision
+    </h2>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="glass-card reveal">
+          <h3>Mission</h3>
+          <p class="lead-text">
+            To drive growth and deliver unparalleled value by leveraging our diversified portfolio and capitalizing on opportunities across various sectors — fostering innovation, operational excellence, and sustainable development.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="glass-card reveal" style="transition-delay:.12s;">
+          <h3>Vision</h3>
+          <p class="lead-text">
+            A future where our diverse businesses thrive and set benchmarks in their industries — prioritizing integrity, quality, and customer satisfaction to build a legacy of trust and success.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIVISIONS -->
+<section class="section" id="divisions">
+  <div class="container mb-4">
+    <span class="eyebrow reveal">Portfolio</span>
+    <h2 class="section-title reveal">
+      Business Divisions
+    </h2>
+  </div>
+  <div class="container">
+    <div class="division-grid" id="divisionGrid">
+      <div class="div-card reveal">
+          <div class="img-wrap"><img src="images/real-estate.jpg" alt="Real Estate"></div>
+          <div class="body">
+            <div class="num">01 / REAL ESTATE</div>
+            <h3>Real Estate</h3>
+            <p>
+              Residential, commercial and industrial properties defined by cost-effectiveness, innovative design and sustainability.
+            </p>
+          </div>
+        </div>
+      <div class="div-card reveal" style="transition-delay:0.08s;">
+          <div class="img-wrap"><img src="images/transportation.jpg" alt="Transportation"></div>
+          <div class="body">
+            <div class="num">02 / TRANSPORTATION</div>
+            <h3>Transportation</h3>
+            <p>
+              Logistics and heavy transport services — flatbed logistics, dumper truck operations, heavy equipment rental and tanker transport across Saudi Arabia and the GCC.
+            </p>
+          </div>
+        </div>
+      <div class="div-card reveal" style="transition-delay:0.16s;">
+          <div class="img-wrap"><img src="images/construction.jpg" alt="Construction"></div>
+          <div class="body">
+            <div class="num">03 / CONSTRUCTION</div>
+            <h3>Construction</h3>
+            <p>
+              Engineering, procurement and construction across civil infrastructure, electromechanical works and site facilities, serving oil &amp; gas, power, healthcare and industrial sectors through Turnkey, Unit Rate and cost-plus contracts.
+            </p>
+          </div>
+        </div>
+      <div class="div-card reveal" style="transition-delay:0.24s;">
+          <div class="img-wrap"><img src="images/manufacturing.jpg" alt="Manufacturing"></div>
+          <div class="body">
+            <div class="num">04 / MANUFACTURING</div>
+            <h3>Manufacturing</h3>
+            <p>
+              High-quality products for diverse markets, built on excellence, precision and innovation.
+            </p>
+          </div>
+        </div>
+      <div class="div-card reveal" style="transition-delay:0.32s;">
+          <div class="img-wrap"><img src="images/chemicals.jpg" alt="Chemicals"></div>
+          <div class="body">
+            <div class="num">05 / CHEMICALS</div>
+            <h3>Chemicals</h3>
+            <p>
+              Distribution of specialty chemicals and ingredients for the coatings, adhesives, sealants and construction industries — resins, hardeners, pigments and additives across the MENA region.
+            </p>
+          </div>
+        </div>
+      <div class="div-card reveal" style="transition-delay:0.4s;">
+          <div class="img-wrap"><img src="images/trading.jpg" alt="Trading"></div>
+          <div class="body">
+            <div class="num">06 / TRADING</div>
+            <h3>Trading</h3>
+            <p>
+              Connecting markets and facilitating the flow of goods through a global network and market knowledge.
+            </p>
+          </div>
+        </div>
+      <div class="div-card reveal" style="transition-delay:0.48s;">
+          <div class="img-wrap"><img src="images/fine-dining.jpg" alt="Fine Dining"></div>
+          <div class="body">
+            <div class="num">07 / FINE DINING</div>
+            <h3>Fine Dining</h3>
+            <p>
+              Culinary experiences built on exceptional service, quality ingredients and memorable moments.
+            </p>
+          </div>
+        </div>
+      <div class="div-card reveal" style="transition-delay:0.56s;">
+          <div class="img-wrap"><img src="images/ultra-luxury-goods.jpg" alt="Ultra Luxury Goods"></div>
+          <div class="body">
+            <div class="num">08 / ULTRA LUXURY</div>
+            <h3>Ultra Luxury Goods</h3>
+            <p>
+              Acquisition, trading and management of gems, gold and watches — maximizing value in timeless resources.
+            </p>
+          </div>
+        </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact-section" id="contact">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 reveal">
+        <span class="eyebrow">Reach Us</span>
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-item">
+          <div class="ic">WEB</div>
+          <div><a href="https://huzaifaholding.com">huzaifaholding.com</a></div>
+        </div>
+        <div class="contact-item">
+          <div class="ic">LOC</div>
+          <div>Headquarters: 7080, Alqamah Alhadrami<br>Az Zahraa, Jeddah 23522, Saudi Arabia</div>
+        </div>
+        <div class="contact-item">
+          <div class="ic">MAIL</div>
+          <div><a href="mailto:info@huzaifaholding.com">info@huzaifaholding.com</a></div>
+        </div>
+      </div>
+      <div class="col-lg-7 reveal-zoom" style="transition-delay:.15s;">
+        <div class="contact-photo" style="height:400px;">
+          <img src="images/contact-jeddah.jpg" alt="Jeddah skyline">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container d-flex flex-wrap justify-content-between align-items-center">
+    <img src="images/logo-mark.png" alt="Huzaifa Holding">
+    <p class="mb-0">
+      Real Estate &middot; Transportation &middot; Construction &middot; Manufacturing &middot; Chemicals &middot; Trading &middot; Fine Dining &middot; Ultra Luxury Goods
+    </p>
+  </div>
+  <div class="container footer-bottom">
+    &copy; 2026 HUZAIFA HOLDING — ALL RIGHTS RESERVED
+  </div>
+</footer>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbarMain').classList.toggle('scrolled', window.scrollY>30);
+});
+document.querySelectorAll('#nav2 .nav-link').forEach(l=>l.addEventListener('click',()=>{
+  const c=bootstrap.Collapse.getInstance(document.getElementById('nav2'));
+  if(c) c.hide();
+}));
+
+// give the whole nav bar a solid backdrop whenever the mobile dropdown is open,
+// even if the page hasn't been scrolled yet (fixes unreadable menu over the hero image)
+const nav2El = document.getElementById('nav2');
+const navbarMainEl = document.getElementById('navbarMain');
+nav2El.addEventListener('show.bs.collapse', ()=>{
+  navbarMainEl.classList.add('scrolled');
+});
+nav2El.addEventListener('hidden.bs.collapse', ()=>{
+  if(window.scrollY <= 30){
+    navbarMainEl.classList.remove('scrolled');
+  }
+});
+
+/* ---- scroll reveal ---- */
+const revealEls = document.querySelectorAll('.reveal, .reveal-zoom');
+const revealObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+},{threshold:.15, rootMargin:'0px 0px -60px 0px'});
+revealEls.forEach(el=>revealObserver.observe(el));
+
+/* ---- animated counter ---- */
+const counters = document.querySelectorAll('.counter');
+const counterObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const el = entry.target;
+      const target = parseInt(el.getAttribute('data-count'), 10);
+      let current = 0;
+      const duration = 900;
+      const stepTime = Math.max(Math.floor(duration / Math.max(target,1)), 60);
+      const timer = setInterval(()=>{
+        current += 1;
+        el.textContent = current;
+        if(current >= target){
+          clearInterval(timer);
+          el.textContent = target;
+        }
+      }, stepTime);
+      counterObserver.unobserve(el);
+    }
+  });
+},{threshold:.5});
+counters.forEach(el=>counterObserver.observe(el));
+
+/* ---- hero parallax ---- */
+const heroBg = document.querySelector('.hero-bg');
+window.addEventListener('scroll',()=>{
+  const y = window.scrollY;
+  if(y < window.innerHeight){
+    heroBg.style.transform = `translateY(${y * 0.25}px)`;
+  }
+},{passive:true});
+
+/* ---- respect reduced motion ---- */
+if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  document.querySelectorAll('.reveal, .reveal-zoom').forEach(el=>el.classList.add('active'));
+  document.querySelectorAll('.hero-anim').forEach(el=>{el.style.animation='none';el.style.opacity=1;el.style.transform='none';});
+}
+
+/* ---- industries ticker ---- */
+const tickerItems = ["Real Estate","Transportation","Construction","Manufacturing","Chemicals","Trading","Fine Dining","Ultra Luxury Goods"];
+const tickerTrack = document.getElementById('tickerTrack');
+const tickerHtml = tickerItems.map(t => `<span>${t}</span>`).join('');
+tickerTrack.innerHTML = tickerHtml + tickerHtml; // doubled for seamless loop
+</script>
+</body>
+</html>
