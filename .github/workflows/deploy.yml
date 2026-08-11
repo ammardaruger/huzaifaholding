@@ -1,0 +1,30 @@
+name: Deploy to Namecheap
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Deploy to Namecheap via SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.CPANEL_HOST }}
+          username: ${{ secrets.CPANEL_USER }}
+          key: ${{ secrets.CPANEL_SSH_KEY }}
+          port: 21098
+          script: |
+            cd /home/huzaegcn/repositories/huzaifaholding
+
+            git fetch origin
+            git reset --hard origin/main
+
+            cp index.html /home/huzaegcn/public_html/
+            rm -rf /home/huzaegcn/public_html/images
+            cp -R images /home/huzaegcn/public_html/
+
+            echo "Deployment complete"
