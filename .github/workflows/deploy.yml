@@ -25,6 +25,7 @@ jobs:
             git reset --hard origin/main
 
             cp index.html /home/huzaegcn/public_html/
+            cp style.css /home/huzaegcn/public_html/
             rm -rf /home/huzaegcn/public_html/images
             cp -R images /home/huzaegcn/public_html/
 
