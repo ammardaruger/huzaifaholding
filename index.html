@@ -46,13 +46,10 @@
         Charting new<br><span class="accent-word">paths</span> forward.
       </h1>
       <p class="sub hero-anim d3">
-        A diversified holding group investing across real estate, transportation, construction, manufacturing, chemicals, trading, fine dining and ultra luxury goods.
+        A diversified holding group investing across real estate, transportation, construction, manufacturing, chemicals, trading, fine dining, ultra luxury goods, manpower and catering.
       </p>
       <a href="#divisions" class="btn btn-gold hero-anim d4">View Our Portfolio</a>
     </div>
-  </div>
-  <div class="scroll-hint">
-    Scroll — 2026 / 2027
   </div>
 </section>
 
@@ -66,7 +63,7 @@
           A forward-thinking group, built on diversified strength.
         </h2>
         <p class="lead-text">
-          Huzaifa Holding is a dynamic forward-thinking company dedicated to excellence across a diverse range of industries. Established with a vision to create enduring value and foster innovation, we bring together expertise and strategic investments in real estate, transportation, construction, manufacturing, chemicals, trading, fine dining and ultra luxury goods.
+          Huzaifa Holding is a dynamic forward-thinking company dedicated to excellence across a diverse range of industries. Established with a vision to create enduring value and foster innovation, we bring together expertise and strategic investments in real estate, transportation, construction, manufacturing, chemicals, trading, fine dining, ultra luxury goods, manpower and catering.
         </p>
       </div>
     </div>
@@ -75,7 +72,7 @@
     <div class="row mt-4">
       <div class="col-lg-6 mx-auto">
         <div class="stat-feature reveal-zoom">
-          <b class="counter" data-count="8">0</b>
+          <b class="counter" data-count="10">0</b>
           <span>Industries under one holding group</span>
         </div>
       </div>
@@ -204,7 +201,37 @@
             </p>
           </div>
         </div>
+      <div class="div-card reveal" style="transition-delay:0.64s;">
+          <div class="img-wrap"><img src="images/manpower.jpg" alt="Manpower"></div>
+          <div class="body">
+            <div class="num">09 / MANPOWER</div>
+            <h3>Manpower</h3>
+            <p>
+              Reliable and professional manpower solutions for cleaning, maintenance, and construction requirements. Trained and skilled personnel support residential, commercial, industrial, and construction projects, providing dependable workforce solutions.
+            </p>
+          </div>
+        </div>
+      <div class="div-card reveal" style="transition-delay:0.72s;">
+          <div class="img-wrap"><img src="images/catering.jpg" alt="Catering"></div>
+          <div class="body">
+            <div class="num">10 / CATERING</div>
+            <h3>Catering</h3>
+            <p>
+              Professional corporate catering solutions for entities, businesses, offices, events, and corporate gatherings delivered with a focus on quality, hygiene, consistency, and reliable service.
+            </p>
+          </div>
+        </div>
     </div>
+  </div>
+</section>
+
+<!-- OUR BRANDS -->
+<section class="brands-section" id="brands">
+  <div class="container brands-heading">
+    <span class="eyebrow">Our Brands</span>
+  </div>
+  <div class="logo-ticker-wrap">
+    <div class="logo-ticker-track" id="logoTickerTrack"></div>
   </div>
 </section>
 
@@ -237,21 +264,11 @@
   </div>
 </section>
 
-<!-- OUR BRANDS -->
-<section class="brands-section" id="brands">
-  <div class="container brands-heading">
-    <span class="eyebrow">Our Brands</span>
-  </div>
-  <div class="logo-ticker-wrap">
-    <div class="logo-ticker-track" id="logoTickerTrack"></div>
-  </div>
-</section>
-
 <footer>
   <div class="container d-flex flex-wrap justify-content-between align-items-center">
     <img src="images/logo-mark.png" alt="Huzaifa Holding">
     <p class="mb-0">
-      Real Estate &middot; Transportation &middot; Construction &middot; Manufacturing &middot; Chemicals &middot; Trading &middot; Fine Dining &middot; Ultra Luxury Goods
+      Real Estate &middot; Transportation &middot; Construction &middot; Manufacturing &middot; Chemicals &middot; Trading &middot; Fine Dining &middot; Ultra Luxury Goods &middot; Manpower &middot; Catering
     </p>
   </div>
   <div class="container footer-bottom">
@@ -335,7 +352,7 @@ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
 }
 
 /* ---- industries ticker ---- */
-const tickerItems = ["Real Estate","Transportation","Construction","Manufacturing","Chemicals","Trading","Fine Dining","Ultra Luxury Goods"];
+const tickerItems = ["Real Estate","Transportation","Construction","Manufacturing","Chemicals","Trading","Fine Dining","Ultra Luxury Goods","Manpower","Catering"];
 const tickerTrack = document.getElementById('tickerTrack');
 const tickerHtml = tickerItems.map(t => `<span>${t}</span>`).join('');
 tickerTrack.innerHTML = tickerHtml + tickerHtml; // doubled for seamless loop
