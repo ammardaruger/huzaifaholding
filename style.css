@@ -387,13 +387,11 @@ footer p{color:var(--muted);font-size:.85rem;}
 .logo-ticker-track img{
   height:28px;
   width:auto;
-  opacity:.6;
-  filter:brightness(0) invert(1);
-  transition:opacity .25s ease, filter .25s ease;
+  opacity:.75;
+  transition:opacity .25s ease;
 }
 .logo-ticker-track .logo-item:hover img{
   opacity:1;
-  filter:none;
 }
 .logo-ticker-wrap:hover .logo-ticker-track{
   animation-play-state:paused;
