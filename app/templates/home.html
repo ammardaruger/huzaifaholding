@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% block title %}Huzaifa Holding | Charting New Paths{% endblock %}
+{% block content %}
+<section class="hero hero-presentation" id="hero">
+  <div class="hero-slides" aria-hidden="true">
+    <div class="hero-slide active" style="background-image:url('{{ url_for('static', filename='images/hero-bg.jpg') }}')"></div>
+    <div class="hero-slide" style="background-image:url('{{ url_for('static', filename='images/real-estate.jpg') }}')"></div>
+    <div class="hero-slide" style="background-image:url('{{ url_for('static', filename='images/transportation.jpg') }}')"></div>
+    <div class="hero-slide" style="background-image:url('{{ url_for('static', filename='images/construction.jpg') }}')"></div>
+    <div class="hero-slide" style="background-image:url('{{ url_for('static', filename='images/chemicals.jpg') }}')"></div>
+    <div class="hero-slide" style="background-image:url('{{ url_for('static', filename='images/catering.jpg') }}')"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="container hero-content">
+    <div class="row">
+      <div class="col-12 col-lg-8 col-xl-7">
+        <span class="eyebrow hero-anim d1" data-i18n="home.eyebrow">Huzaifa Holding</span>
+        <h1 class="hero-anim d2" data-i18n-html="home.title">Charting new <span>paths</span> forward.</h1>
+        <p class="sub hero-anim d3" data-i18n="home.subtitle">A diversified Saudi holding group building enduring businesses across strategic industries.</p>
+        <div class="hero-actions hero-anim d4">
+          <a href="{{ url_for('pages.businesses') }}" class="btn btn-primary-hh" data-i18n="home.portfolio">Explore Our Businesses</a>
+          <a href="{{ url_for('pages.about') }}" class="btn btn-outline-hh" data-i18n="home.about">About the Group</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-progress" aria-hidden="true">
+    {% for _ in range(6) %}<button class="hero-dot {% if loop.first %}active{% endif %}" tabindex="-1"></button>{% endfor %}
+  </div>
+</section>
+
+<section class="home-intro section-sm">
+  <div class="container">
+    <div class="row align-items-center g-4">
+      <div class="col-lg-8 reveal">
+        <span class="eyebrow" data-i18n="home.introEyebrow">One Group. Multiple Capabilities.</span>
+        <h2 class="section-title" data-i18n="home.introTitle">Focused businesses, connected by a long-term outlook.</h2>
+        <p class="lead-text mb-0" data-i18n="home.introCopy">Huzaifa Holding brings together complementary businesses under a shared commitment to quality, reliability and sustainable growth.</p>
+      </div>
+      <div class="col-lg-4 reveal text-lg-end">
+        <a href="{{ url_for('pages.businesses') }}" class="text-link" data-i18n="home.viewBusinesses">View business portfolio →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="brands-section" id="brands">
+  <div class="container brands-heading reveal">
+    <span class="eyebrow" data-i18n="home.brandsEyebrow">Our Brands</span>
+    <h2 class="section-title mb-2" data-i18n="home.brandsTitle">The companies within Huzaifa Holding.</h2>
+    <p class="lead-text mb-0" data-i18n="home.brandsCopy">A growing portfolio of operating brands serving customers across Saudi Arabia and the region.</p>
+  </div>
+  <div class="logo-ticker-wrap">
+    <div class="logo-ticker-track" id="logoTickerTrack"></div>
+  </div>
+</section>
+
+<section class="home-cta section-sm">
+  <div class="container">
+    <div class="cta-panel reveal">
+      <div>
+        <span class="eyebrow" data-i18n="home.ctaEyebrow">Partnerships & Enquiries</span>
+        <h2 data-i18n="home.ctaTitle">Build the next opportunity with us.</h2>
+      </div>
+      <a href="{{ url_for('pages.contact') }}" class="btn btn-primary-hh" data-i18n="home.ctaButton">Contact Huzaifa Holding</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

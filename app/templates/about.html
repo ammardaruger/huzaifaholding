@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}About | Huzaifa Holding{% endblock %}
+{% block content %}
+<section class="page-hero page-hero-light">
+  <div class="container">
+    <span class="eyebrow hero-anim d1" data-i18n="about.eyebrow">About Huzaifa Holding</span>
+    <h1 class="hero-anim d2" data-i18n-html="about.title">Diversified strength.<br><span>Shared direction.</span></h1>
+    <p class="sub hero-anim d3" data-i18n="about.subtitle">A forward-thinking Saudi holding group focused on enduring value, disciplined growth and operational excellence.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="row g-5 align-items-start">
+      <div class="col-lg-7 reveal">
+        <span class="eyebrow" data-i18n="about.storyEyebrow">Our Story</span>
+        <h2 class="section-title" data-i18n="about.storyTitle">Built to create value across changing markets.</h2>
+        <p class="lead-text" data-i18n="about.storyCopy">Huzaifa Holding brings together strategic investments and operating businesses across real estate, transportation, construction, manufacturing, chemicals, trading, hospitality, luxury goods, manpower and catering. Our role is to provide each business with clear direction, disciplined stewardship and the platform to grow responsibly.</p>
+      </div>
+      <div class="col-lg-5 reveal-zoom">
+        <div class="stat-card">
+          <strong>10</strong>
+          <span data-i18n="about.stat">Business sectors within one holding group</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section purpose-section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-md-6 reveal">
+        <article class="purpose-card">
+          <span class="eyebrow" data-i18n="about.missionLabel">Mission</span>
+          <h2 data-i18n="about.missionTitle">Create lasting value through focused execution.</h2>
+          <p data-i18n="about.missionCopy">To drive sustainable growth by developing strong businesses, pursuing disciplined opportunities and maintaining high standards of quality, integrity and operational performance.</p>
+        </article>
+      </div>
+      <div class="col-md-6 reveal">
+        <article class="purpose-card">
+          <span class="eyebrow" data-i18n="about.visionLabel">Vision</span>
+          <h2 data-i18n="about.visionTitle">A trusted group with businesses that lead in their fields.</h2>
+          <p data-i18n="about.visionCopy">To build a resilient portfolio of respected companies that contribute to customers, communities and the long-term development of the markets we serve.</p>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section-sm">
+  <div class="container text-center reveal">
+    <h2 class="section-title mx-auto" data-i18n="about.ctaTitle">See where we operate.</h2>
+    <a class="btn btn-primary-hh" href="{{ url_for('pages.businesses') }}" data-i18n="about.ctaButton">Explore Businesses</a>
+  </div>
+</section>
+{% endblock %}

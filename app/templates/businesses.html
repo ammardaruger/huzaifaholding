@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Businesses | Huzaifa Holding{% endblock %}
+{% block content %}
+<section class="page-hero page-hero-light">
+  <div class="container">
+    <span class="eyebrow hero-anim d1" data-i18n="businesses.eyebrow">Business Portfolio</span>
+    <h1 class="hero-anim d2" data-i18n-html="businesses.title">Ten sectors.<br><span>One long-term strategy.</span></h1>
+    <p class="sub hero-anim d3" data-i18n="businesses.subtitle">Our portfolio spans essential services, industrial capabilities and consumer-focused businesses, each managed with a clear focus on quality and sustainable growth.</p>
+  </div>
+</section>
+
+<section class="section businesses-section">
+  <div class="container">
+    <div class="division-grid">
+      {% for item in divisions %}
+      <article class="div-card reveal" style="transition-delay:{{ '%.2f'|format(loop.index0 * 0.04) }}s;">
+        <div class="img-wrap"><img src="{{ url_for('static', filename='images/' ~ item.image) }}" alt="{{ item.title }}" loading="lazy"></div>
+        <div class="body">
+          <div class="num">{{ item.number }}</div>
+          <h2 data-i18n="division.{{ item.slug }}.title">{{ item.title }}</h2>
+          <p data-i18n="division.{{ item.slug }}.description">{{ item.description }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section-sm businesses-cta">
+  <div class="container">
+    <div class="cta-panel reveal">
+      <div>
+        <span class="eyebrow" data-i18n="businesses.ctaEyebrow">Business Enquiries</span>
+        <h2 data-i18n="businesses.ctaTitle">Interested in working with one of our businesses?</h2>
+      </div>
+      <a href="{{ url_for('pages.contact') }}" class="btn btn-primary-hh" data-i18n="businesses.ctaButton">Get in Touch</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

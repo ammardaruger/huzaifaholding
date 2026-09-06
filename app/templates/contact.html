@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Contact | Huzaifa Holding{% endblock %}
+{% block content %}
+<section class="page-hero page-hero-light">
+  <div class="container">
+    <span class="eyebrow hero-anim d1" data-i18n="contact.eyebrow">Contact</span>
+    <h1 class="hero-anim d2" data-i18n-html="contact.title">Start a conversation<br><span>with Huzaifa Holding.</span></h1>
+    <p class="sub hero-anim d3" data-i18n="contact.subtitle">For business, partnership and portfolio enquiries, connect with our headquarters in Jeddah.</p>
+  </div>
+</section>
+
+<section class="section contact-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-5 reveal">
+        <span class="eyebrow" data-i18n="contact.hqLabel">Headquarters</span>
+        <h2 class="section-title" data-i18n="contact.hqTitle">Jeddah, Saudi Arabia</h2>
+        <div class="contact-item"><div class="ic">WEB</div><div><a href="https://huzaifaholding.com">huzaifaholding.com</a></div></div>
+        <div class="contact-item"><div class="ic">LOC</div><div data-i18n-html="contact.address">7080 Alqamah Alhadrami<br>Az Zahraa, Jeddah 23522, Saudi Arabia</div></div>
+        <div class="contact-item"><div class="ic">MAIL</div><div><a href="mailto:info@huzaifaholding.com">info@huzaifaholding.com</a></div></div>
+      </div>
+      <div class="col-lg-7 reveal-zoom">
+        <div class="contact-photo"><img src="{{ url_for('static', filename='images/contact-jeddah.jpg') }}" alt="Jeddah skyline"></div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
